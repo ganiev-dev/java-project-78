@@ -45,5 +45,4 @@ class StringSchemaTest {
         var x = cheks.get(0);
         assertThat(x.test("тест")).isFalse();
     }
-
 }

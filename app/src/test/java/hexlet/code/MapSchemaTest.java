@@ -29,7 +29,7 @@ class MapSchemaTest {
         schema.sizeof(2);
         var data = new HashMap<String, String>();
         assertThat(schema.isValid(data)).isFalse();
-        data.put("key1","value1");
+        data.put("key1", "value1");
         assertThat(schema.isValid(data)).isFalse();
     }
 }
