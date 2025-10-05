@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Predicate;
 
+@SuppressWarnings("checkstyle:DesignForExtension")
 public class BaseSchema<T> {
     private Map<String, Predicate<T>> checks = new HashMap<>();
 
