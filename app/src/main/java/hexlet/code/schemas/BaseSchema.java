@@ -4,11 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Predicate;
 
-@SuppressWarnings("checkstyle:DesignForExtension")
 public class BaseSchema<T> {
     private Map<String, Predicate<T>> checks = new HashMap<>();
 
-    public boolean isValid(T data) {
+    public final boolean isValid(T data) {
         // Если не добавлен "required" и данные null - валидно
         if (!checks.containsKey("required") && data == null) {
             return true;
@@ -29,7 +28,7 @@ public class BaseSchema<T> {
     }
 
     //Если добавляется новая того же типа - затирает предыдущую
-    public void addCheck(String name, Predicate<T> check) {
+    public final void addCheck(String name, Predicate<T> check) {
         checks.put(name, check);
     }
 }
