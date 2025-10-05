@@ -7,7 +7,7 @@ public class StringSchema extends BaseSchema<String> {
     private ArrayList<Predicate<String>> checks = new ArrayList<>();
 
     public StringSchema required() {
-        addCheck(data -> data != null && !data.isEmpty()); //Добавляем лямбду в список проверок
+        addCheck(data -> data != null && !data.isEmpty());
         return this;
     }
 

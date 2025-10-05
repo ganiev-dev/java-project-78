@@ -1,5 +1,7 @@
 package hexlet.code;
 
+import hexlet.code.schemas.NumberSchema;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.function.Predicate;
@@ -7,17 +9,22 @@ import java.util.function.Predicate;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class NumberSchemaTest {
-    private Validator v = new Validator();
+    private Validator v;
+    private NumberSchema schema;
+
+    @BeforeEach
+    void init() {
+        v = new Validator();
+        schema = v.number();
+    }
 
     @Test
     void nullStr() {
-        var schema = v.number();
         assertThat(schema.isValid(null)).isTrue();
     }
 
     @Test
     void empthyStr() {
-        var schema = v.number();
         assertThat(schema.isValid(0)).isTrue();
     }
 
@@ -25,6 +32,8 @@ class NumberSchemaTest {
     void required() {
         var schema = v.number();
         assertThat(schema.isValid(null)).isTrue();
+        var schema2 = v.number().required();
+        assertThat(schema2.isValid(null)).isFalse();
     }
 
     @Test
