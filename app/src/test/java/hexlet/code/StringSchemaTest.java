@@ -18,12 +18,14 @@ class StringSchemaTest {
     void empthyStr() {
         var schema = v.string();
         assertThat(schema.isValid("")).isTrue();
+
     }
 
     @Test
     void required() {
         var schema = v.string().required();
         assertThat(schema.isValid(null)).isFalse();
+        assertThat(schema.isValid("")).isFalse();
     }
 
     @Test

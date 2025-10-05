@@ -19,8 +19,10 @@ class NumberSchemaTest {
     }
 
     @Test
-    void nullStr() {
+    void nullTest() {
         assertThat(schema.isValid(null)).isTrue();
+        schema = v.number().required();
+        assertThat(schema.isValid(null)).isFalse();
     }
 
     @Test
