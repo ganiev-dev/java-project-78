@@ -6,19 +6,18 @@ import java.util.Objects;
 public class MapSchema extends BaseSchema<Map<?, ?>> {
 
     public MapSchema required() {
-        this.required = true;
-        addCheck(Objects::nonNull);
+        addCheck("required", Objects::nonNull);
         return this;
     }
 
     public MapSchema sizeof(int size) {
-        addCheck(data -> data != null && data.size() == size);
+        addCheck("sizeOf", data -> data.size() == size);
         return this;
     }
 
     @SuppressWarnings("unchecked")
     public <T> MapSchema shape(Map<?, BaseSchema<T>> schemas) {
-        addCheck((data) -> schemas.entrySet().stream()
+        addCheck("shapeMap", (data) -> schemas.entrySet().stream()
                 .allMatch(entry -> {
                     //получаем ключ
                     var key = entry.getKey();

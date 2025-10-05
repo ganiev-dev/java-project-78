@@ -1,22 +1,25 @@
 package hexlet.code.schemas;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Predicate;
 
-public class BaseSchema<T> {
-    private ArrayList<Predicate<T>> checks = new ArrayList<>();
-    protected Boolean required = false;
+public abstract class BaseSchema<T> {
+    private Map<String, Predicate<T>> checks = new HashMap<>();
 
-    public Boolean isValid(T data) {
-        if (!required && data == null) { //если рек не работал и null - валидно
+    public boolean isValid(T data) {
+        // Если не добавлен "required" и данные null - валидно
+        if (!checks.containsKey("required") && data == null) {
             return true;
         }
 
-        if (required && data == null) { //если рек сработал и null - не валидно
+        // Если добавлен "required" и данные null - невалидно
+        if (checks.containsKey("required") && data == null) {
             return false;
         }
 
-        for (Predicate<T> check : checks) {
+        //Пробегаем список проверок
+        for (var check : checks.values()) {
             if (!check.test(data)) {
                 return false;
             }
@@ -24,7 +27,8 @@ public class BaseSchema<T> {
         return true;
     }
 
-    public void addCheck(Predicate<T> check) {
-        checks.add(check);
+    //Если добавляется новая того же типа - затирает предыдущую
+    public void addCheck(String name, Predicate<T> check) {
+        checks.put(name, check);
     }
 }

@@ -5,18 +5,17 @@ import java.util.Objects;
 public class NumberSchema extends BaseSchema<Integer> {
 
     public NumberSchema required() {
-        addCheck(Objects::nonNull);
-        this.required = true;
+        addCheck("required", Objects::nonNull);
         return this;
     }
 
     public NumberSchema positive() {
-        addCheck(data -> data == null || data > 0);
+        addCheck("positive", data -> data > 0);
         return this;
     }
 
     public NumberSchema range(int min, int max) {
-        addCheck(data -> data == null || (data >= min && data <= max));
+        addCheck("range", data -> data >= min && data <= max);
         return this;
     }
 }
