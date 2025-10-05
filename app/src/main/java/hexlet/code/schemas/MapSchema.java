@@ -6,6 +6,7 @@ import java.util.Objects;
 public class MapSchema extends BaseSchema<Map<?, ?>> {
 
     public MapSchema required() {
+        this.required = true;
         addCheck(Objects::nonNull);
         return this;
     }
