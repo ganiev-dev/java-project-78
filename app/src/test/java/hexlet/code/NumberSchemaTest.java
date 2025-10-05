@@ -37,13 +37,13 @@ class NumberSchemaTest {
 
     @Test
     void positive() {
-        var schema = v.number().positive();
+        schema = v.number().positive();
         assertThat(schema.isValid(0)).isFalse();
     }
 
     @Test
     void range() {
-        var schema = v.number().range(4, 12);
+        schema = v.number().range(4, 12);
         assertThat(schema.isValid(6)).isTrue();
     }
 
