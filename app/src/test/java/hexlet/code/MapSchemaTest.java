@@ -14,7 +14,7 @@ class MapSchemaTest {
 
     @BeforeEach
     void init() {
-       schema = v.map();
+        schema = v.map();
     }
 
     @Test
@@ -69,7 +69,7 @@ class MapSchemaTest {
 
     //type of data
     @Test
-    void shapeData () {
+    void shapeData() {
         Map<String, BaseSchema<Integer>> schemas = new HashMap<>();
         schemas.put("firstvalue", v.number().positive());
         schema.shape(schemas);

@@ -30,7 +30,6 @@ class NumberSchemaTest {
 
     @Test
     void required() {
-        var schema = v.number();
         assertThat(schema.isValid(null)).isTrue();
         var schema2 = v.number().required();
         assertThat(schema2.isValid(null)).isFalse();
